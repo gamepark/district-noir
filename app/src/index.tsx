@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { GameTemplateOptionsSpec } from '@gamepark/game-template/GameTemplateOptions'
-import { GameTemplateRules } from '@gamepark/game-template/GameTemplateRules'
-import { GameTemplateSetup } from '@gamepark/game-template/GameTemplateSetup'
+import { DistrictNoirOptionsSpec } from '@gamepark/district-noir/DistrictNoirOptions'
+import { DistrictNoirRules } from '@gamepark/district-noir/DistrictNoirRules'
+import { DistrictNoirSetup } from '@gamepark/district-noir/DistrictNoirSetup'
 import { GameProvider, MaterialGameAnimations, setupTranslation } from '@gamepark/react-game'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
@@ -14,7 +14,7 @@ setupTranslation(translations, { debug: false })
 
 ReactDOM.render(
   <StrictMode>
-    <GameProvider game="game-template" Rules={GameTemplateRules} optionsSpec={GameTemplateOptionsSpec} GameSetup={GameTemplateSetup}
+    <GameProvider game="district-noir" Rules={DistrictNoirRules} optionsSpec={DistrictNoirOptionsSpec} GameSetup={DistrictNoirSetup}
                   material={Material} locators={Locators} animations={new MaterialGameAnimations()}>
       <App/>
     </GameProvider>

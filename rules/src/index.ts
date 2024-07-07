@@ -1,3 +1,3 @@
-export { GameTemplateRules } from './GameTemplateRules'
-export { GameTemplateOptionsSpec } from './GameTemplateOptions'
-export { GameTemplateSetup } from './GameTemplateSetup'
+export { DistrictNoirRules } from './DistrictNoirRules'
+export { DistrictNoirOptionsSpec } from './DistrictNoirOptions'
+export { DistrictNoirSetup } from './DistrictNoirSetup'
