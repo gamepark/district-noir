@@ -1,4 +1,4 @@
-# How to adapt a game for Game Park!
+x# How to adapt a game for Game Park!
 
 Welcome, developer! This documentation will guide you if you would like to adapt a game for [Game Park](https://game-park.com/).
 

@@ -1,7 +1,7 @@
 {
   "name": "@gamepark/district-noir",
   "version": "0.0.0",
-  "description": "The rules of Game Template adapted for Game Park",
+  "description": "The rules of District Noir adapted for Game Park",
   "sideEffects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,7 +21,7 @@
     "@gamepark/rules-api": ">=6.16"
   },
   "devDependencies": {
-    "@gamepark/rules-api": "~6.19.0",
+    "@gamepark/rules-api": "~6.23.0",
     "i18next": "^22.0.3"
   }
 }
