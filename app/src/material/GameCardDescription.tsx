@@ -22,8 +22,8 @@ import Back from '../images/Back.jpg'
 
 
 export class GameCardDescription extends CardDescription {
-  width = 6.35
-  height = 8.89
+  width = 6.1
+  height = 11.2
 
   backImage = Back
 
@@ -46,7 +46,6 @@ export class GameCardDescription extends CardDescription {
     [Card.TheDocks]: TheDocks,
 
       }
-
 
   }
 export const gameCardDescription = new GameCardDescription()

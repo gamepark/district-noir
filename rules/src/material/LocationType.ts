@@ -2,9 +2,9 @@ export enum LocationType {
     Hand = 1,
     PlayArea,
     Deck,
-    SupportColumn,
-    CityCardColumns,
+    PlayerColumns,
     AllianceCard,
     BetrayalCard,
     PlayerCard,
+    CampToken
 }
