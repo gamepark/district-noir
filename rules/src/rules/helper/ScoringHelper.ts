@@ -1,6 +1,9 @@
 import { MaterialGame, MaterialRulesPart } from '@gamepark/rules-api'
 import sum from 'lodash/sum'
 import sumBy from 'lodash/sumBy'
+import groupBy from 'lodash/groupBy'
+import keys from 'lodash/keys'
+import minBy from 'lodash/minBy'
 import { MaterialType } from '../../material/MaterialType'
 import { LocationType } from '../../material/LocationType'
 import { Card, isCity } from '../../material/Card'
@@ -28,6 +31,17 @@ export class ScoringHelper extends MaterialRulesPart {
         return this.colums.locationId(id)
     }
 
+    get supportCards() {
+        return this.colums.locationId((id: number) => id <= Card.Support8).getItems()
+    }
+
+    get linesScore() {
+        const cards = this.supportCards
+        const groupedCards = groupBy(cards, (item) => item.id)
+        const minKey =minBy(keys(groupedCards), (key) => groupedCards[+key].length)
+        if (!minKey) return 0
+        return groupedCards[minKey].length * 5
+    }
 
     getOpponentColumnCards(id: number) {
         return this.opponentColumns.locationId(id)
@@ -41,9 +55,8 @@ export class ScoringHelper extends MaterialRulesPart {
             const opponentCards = this.getOpponentColumnCards(id)
             if (opponentCards.length >= myCards.length) return 0
             return id
-        // } else if (id === 10) {
-        //     const myCards = this.getColumnCards(id)
-        //     return sumBy(myCards.getItems(), (item) => FullLine*5 )
+        } else if (id === 9) {
+            return this.linesScore
         } else if (id === 10) {
             const myCards = this.getColumnCards(id)
             return sumBy(myCards.getItems(), (item) => item.id % 10)
@@ -76,7 +89,7 @@ export class ScoringHelper extends MaterialRulesPart {
         if (this.cities.length === 3) return 99
         if (this.opponentCities.length === 3) return 0
         return sum(
-            [5, 6, 7, 8, 10, 20].map((id) => this.getColumnScore(id))
+            [5, 6, 7, 8, 9, 10, 20].map((id) => this.getColumnScore(id))
         )
     }
 }
