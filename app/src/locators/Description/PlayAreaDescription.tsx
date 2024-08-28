@@ -17,10 +17,13 @@ export class PlayerAreaDescription extends LocationDescription {
     return this.getPlayAreaCoordinates({ ...this.location, x: x }, context)
   }
 
-  getPlayAreaCoordinates(location: Location, _context: MaterialContext): Coordinates {
+  getPlayAreaCoordinates(location: Location, context: MaterialContext): Coordinates {
     const deckCoordinates = gameDeckLocator.coordinates
+    const { rules } = context
+    const isEnded = rules.game.rule === undefined
+    const x = isEnded? (deckCoordinates.x + location.x! * 0.1): deckCoordinates.x + (location.x! + 1) * (gameCardDescription.width + 1)
       return {
-        x: deckCoordinates.x + (location.x! + 1) * (gameCardDescription.width + 1),
+        x: x,
         y: deckCoordinates.y,
         z: 1
       }

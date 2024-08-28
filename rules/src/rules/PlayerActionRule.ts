@@ -3,7 +3,7 @@ import { MaterialType } from '../material/MaterialType'
 import { LocationType } from '../material/LocationType'
 import { RuleId } from './RuleId'
 import { CustomMoveType } from './CustomMoveType'
-import { Card } from '../material/Card'
+import { Card, isCity } from '../material/Card'
 import { Memory } from './Memory'
 
 export class PlayerActionRule extends PlayerTurnRule {
@@ -34,9 +34,9 @@ export class PlayerActionRule extends PlayerTurnRule {
   onCustomMove() {
     const moves: MaterialMove[] = []
     this.memorize(Memory.HasTaken, true, this.player)    
+    const lastFiveCards = this.lastFiveCards
     moves.push(
-      ...this
-        .lastFiveCards
+      ...lastFiveCards
         .moveItems((item) => ({
           type: LocationType.PlayerColumns,
           id: item.id <= Card.Support8? item.id: (Math.floor(item.id / 10) * 10),
@@ -44,7 +44,14 @@ export class PlayerActionRule extends PlayerTurnRule {
         }))
      )
 
-    moves.push(this.goToNext())
+     const cities = this.cities.length
+     const takenCities = lastFiveCards.filter((item) => isCity(item.id)).length
+     if (cities + takenCities === 3) {
+       moves.push(this.endGame())
+     } else {
+      moves.push(this.goToNext())
+     }
+    
     return moves
   }
 
@@ -56,10 +63,6 @@ export class PlayerActionRule extends PlayerTurnRule {
   }
 
   goToNext() {
-    if (this.isVictoryTriggered) {
-      return this.endGame()
-    }
-
     if (this.isEndOfRound) {
       return this.startRule(RuleId.EndOfRound)
     }
@@ -87,7 +90,16 @@ export class PlayerActionRule extends PlayerTurnRule {
   }
 
   get isVictoryTriggered() {
-      return false
+    console.log(this.player, this.cities)
+    return this.cities.length === 3
+  }
+
+  get cities() {
+    return this
+      .material(MaterialType.Card)
+      .location(LocationType.PlayerColumns)
+      .player(this.player)
+      .id((id: number) => isCity(id))
   }
 
   get canTake() {

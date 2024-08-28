@@ -4,11 +4,13 @@ export enum Card {
   Support7,
   Support8,
 
-  Alliance2 = 10,
+  PerLine = 10,
+
+  Alliance2 = 12,
   Alliance3,
   Alliance4,
 
-  Betrayal1 = 20,
+  Betrayal1 = 21,
   Betrayal2,
   Betrayal3,
   
@@ -16,3 +18,6 @@ export enum Card {
   PoliceDepartment,
   CityHall,
 }
+
+
+export const isCity = (card: Card) => card >= Card.TheDocks
