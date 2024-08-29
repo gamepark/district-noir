@@ -71,14 +71,28 @@ export class PlayerActionRule extends PlayerTurnRule {
   }
 
   get isEndOfRound() {
+    const hasAllTaken = this.game.players.every((player) => this.remind(Memory.HasTaken, player))
+    if (!this.deck.length && hasAllTaken) {
+      return true
+    }
     return (
-      this
-        .material(MaterialType.Card)
-        .location(LocationType.Hand)
-        .length === 0
-      && this.game.players.every((player) => this.remind(Memory.HasTaken, player))  
+      this.hands.length === 0
+      && hasAllTaken
     )
 
+  }
+
+  get hands() {
+    return this
+      .material(MaterialType.Card)
+      .location(LocationType.Hand)
+  }
+
+  get deck() {
+    return this
+      .material(MaterialType.Card)
+      .location(LocationType.Deck)
+      .deck()
   }
 
   get lastFiveCards() {
@@ -90,7 +104,6 @@ export class PlayerActionRule extends PlayerTurnRule {
   }
 
   get isVictoryTriggered() {
-    console.log(this.player, this.cities)
     return this.cities.length === 3
   }
 

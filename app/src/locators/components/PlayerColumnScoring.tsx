@@ -20,12 +20,11 @@ type PlayerColumnScoringProps = {
 export const PlayerColumnScoring: FC<PlayerColumnScoringProps> = (props) => {
   const { location } = props
   const rules = useRules<DistrictNoirRules>()!
-  const id = playerColumnsLocator.getColumnForLocationId(location.id)
+  const id = playerColumnsLocator.getColumnForLocationId(rules.game.rule === undefined, location.id)
   const player = usePlayerId()
   const helper = new ScoringHelper(rules.game, location.player!)
   const bottomPlayer = player ?? rules.players[0]
   const isBottomPlayer = location.player === bottomPlayer
-  console.log(isBottomPlayer)
   const iWinByCities = rules.material(MaterialType.Card).location(LocationType.PlayerColumns).player(location.player!).locationId(30).length === 3
   if (iWinByCities) {
     if (location.id === 30) {
@@ -42,21 +41,21 @@ export const PlayerColumnScoring: FC<PlayerColumnScoringProps> = (props) => {
     }
   }
 
-  if (location.id === 9) {
+  if (id === 4) {
     const lineCount = helper.linesScore / 5
     return (
       <>
-        <div css={[scoreItem, appearing(id * 1)]}>
+        <div css={[scoreItem, appearing(id)]}>
           <span>{helper.linesScore}</span>
         </div>
-        {lineCount && (
-          <div css={[isBottomPlayer ? bottomVerticalLineCss(lineCount - 1) : topVerticalLineCss(lineCount - 1), appearing(id * 1)]}></div>
+        {!!lineCount && (
+          <div css={[isBottomPlayer ? bottomVerticalLineCss(lineCount - 1) : topVerticalLineCss(lineCount - 1), appearing(id)]}></div>
         )}
         {
           Array.from(Array(lineCount)).map((_, i) => (
             <div
               key={i}
-              css={[isBottomPlayer ? bottomLine(i) : topLine(i), appearing(id * 1)]}
+              css={[isBottomPlayer ? bottomLine(i) : topLine(i), appearing(id)]}
             />
           ))
         }
@@ -67,7 +66,7 @@ export const PlayerColumnScoring: FC<PlayerColumnScoringProps> = (props) => {
 
   return (
     <>
-      <div css={[scoreItem, appearing((id === 8? 7: id) * 1)]}>
+      <div css={[scoreItem, appearing((id === 8? 7: id))]}>
         {id < 8 && <span>{Math.abs(helper.getColumnScore(location.id))}</span>}
         {id === 8 && <span>{helper.score}</span>}
       </div>
@@ -90,31 +89,31 @@ const plusCss = css`
 `
 
 const bottomVerticalLineCss = (count: number) => css`
-  border-left: 0.2em solid white;
-  height: ${2.9 + count * 2.2}em;
+  border-left: 0.25em solid white;
+  height: ${2.95 + count * 2.2}em;
   position: absolute;
   top: 100%;
   transform: translate3d(2.48em, 0, 0);
 `
 
 const topVerticalLineCss = (count: number) => css`
-  border-left: 0.2em solid white;
-  height: ${2.9 + count * 2.2}em;
+  border-left: 0.25em solid white;
+  height: ${2.95 + count * 2.2}em;
   position: absolute;
   bottom: 100%;
   transform: translate3d(2.48em, 0, 0);
 `
 
 const bottomLine = (index: number) => css`
-  border-bottom: 0.2em solid white;
-  transform: translateX(-1em) translateY(${8 + (index * 1.8)}em);
-  width: 7em;
+  border-bottom: 0.25em solid white;
+  transform: translateX(-0.95em) translateY(${7.9 + (index * 1.8)}em);
+  width: 3.65em;
 `
 
 const topLine = (index: number) => css`
-  border-bottom: 0.2em solid white;
-  transform: translateX(-1em) translateY(-${3 + (index * 1.8)}em);
-  width: 7em;
+  border-top: 0.25em solid white;
+  transform: translateX(-0.95em) translateY(-${3 + (index * 2.5)}em);
+  width: 3.65em;
 `
 
 const appearingKeyFrame = keyframes`

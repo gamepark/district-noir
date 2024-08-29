@@ -19,7 +19,6 @@ export class PlayerColumnsLocator extends ListLocator {
 
     getCoordinates(location: Location, context: MaterialContext): Coordinates {
         const locationId = location.id
-        const column = this.getColumnForLocationId(locationId)
         const player = context.player
         const players = context.rules.players
         const locationPlayer = location.player
@@ -27,9 +26,10 @@ export class PlayerColumnsLocator extends ListLocator {
         const isBottomPlayer = locationPlayer === bottomPlayer
         const { rules } = context
         const isEnded = rules.game.rule === undefined
+        const column = this.getColumnForLocationId(isEnded, locationId)
         const baseX = isEnded? -24.5: 5
         return {
-            x: baseX + (column * (gameCardDescription.width + 2)),
+            x: baseX + (column * (gameCardDescription.width + (isEnded? 2: 0.2))),
             y: isBottomPlayer? 13: -13,
             z: 0
         }
@@ -38,7 +38,6 @@ export class PlayerColumnsLocator extends ListLocator {
     getLocationCoordinates(location: Location, context: MaterialContext, index?: number) {
         if (isItemContext(context)) return super.getLocationCoordinates(location, context, index)
         const locationId = location.id
-        const column = this.getColumnForLocationId(locationId)
         const player = context.player
         const players = context.rules.players
         const locationPlayer = location.player
@@ -46,9 +45,10 @@ export class PlayerColumnsLocator extends ListLocator {
         const isBottomPlayer = locationPlayer === bottomPlayer
         const { rules } = context
         const isEnded = rules.game.rule === undefined
+        const column = this.getColumnForLocationId(isEnded, locationId)
         const baseX = isEnded? -24.5: 5
         return {
-            x: baseX + (column * (gameCardDescription.width + 2)),
+            x: baseX + (column * (gameCardDescription.width + (isEnded? 2: 0.2))),
             y: isBottomPlayer? 3: -3,
             z: 0
         }
@@ -79,16 +79,27 @@ export class PlayerColumnsLocator extends ListLocator {
         ])
     }
 
-    getColumnForLocationId(id: number) {
+    getColumnForLocationId(ended: boolean, id: number) {
+        if (ended) {
+            if (id === 5) return 0
+            if (id === 6) return 1
+            if (id === 7) return 2
+            if (id === 8) return 3
+            if (id === 9) return 4
+            if (id === 10) return 5
+            if (id === 20) return 6
+            if (id === 30) return 7
+            if (id === 99) return 8
+        }
+
         if (id === 5) return 0
         if (id === 6) return 1
         if (id === 7) return 2
         if (id === 8) return 3
-        if (id === 9) return 4
-        if (id === 10) return 5
-        if (id === 20) return 6
-        if (id === 30) return 7
-        if (id === 99) return 8
+        if (id === 10) return 4
+        if (id === 20) return 5
+        if (id === 30) return 6
+
         return -1
     }
 

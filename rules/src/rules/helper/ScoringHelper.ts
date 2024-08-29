@@ -1,12 +1,11 @@
 import { MaterialGame, MaterialRulesPart } from '@gamepark/rules-api'
-import sum from 'lodash/sum'
-import sumBy from 'lodash/sumBy'
-import groupBy from 'lodash/groupBy'
 import keys from 'lodash/keys'
 import minBy from 'lodash/minBy'
-import { MaterialType } from '../../material/MaterialType'
+import sum from 'lodash/sum'
+import sumBy from 'lodash/sumBy'
+import { Card, isCity, isSupport, supports } from '../../material/Card'
 import { LocationType } from '../../material/LocationType'
-import { Card, isCity } from '../../material/Card'
+import { MaterialType } from '../../material/MaterialType'
 
 export class ScoringHelper extends MaterialRulesPart {
     constructor(game: MaterialGame, readonly player: number) {
@@ -32,15 +31,19 @@ export class ScoringHelper extends MaterialRulesPart {
     }
 
     get supportCards() {
-        return this.colums.locationId((id: number) => id <= Card.Support8).getItems()
+        return this.colums.locationId((id: number) => isSupport(id)).getItems()
     }
 
     get linesScore() {
         const cards = this.supportCards
-        const groupedCards = groupBy(cards, (item) => item.id)
-        const minKey =minBy(keys(groupedCards), (key) => groupedCards[+key].length)
+        const cardsByKey: Partial<Record<Card, number>> = {}
+        for (const type of supports) {
+            cardsByKey[type] = cards.filter((item) => item.id === type).length
+        }
+
+        const minKey = minBy(keys(cardsByKey), (key) => cardsByKey[+key])
         if (!minKey) return 0
-        return groupedCards[minKey].length * 5
+        return cardsByKey[minKey] * 5
     }
 
     getOpponentColumnCards(id: number) {
