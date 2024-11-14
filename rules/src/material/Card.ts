@@ -6,8 +6,6 @@ export enum Card {
   Support7,
   Support8,
 
-  PerLine = 10,
-
   Alliance2 = 12,
   Alliance3,
   Alliance4,
@@ -24,4 +22,6 @@ export enum Card {
 
 export const isSupport = (card: Card) => [Card.Support5,  Card.Support6,Card.Support7,  Card.Support8].includes(card)
 export const supports = getEnumValues(Card).filter(isSupport)
+export const isAlliance = (card: Card) => card > Card.Support8 && card < Card.Betrayal1
+export const isBetrayal = (card: Card) => card > Card.Alliance4 && card < Card.TheDocks
 export const isCity = (card: Card) => card >= Card.TheDocks

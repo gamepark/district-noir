@@ -90,7 +90,7 @@ const plusCss = css`
 
 const bottomVerticalLineCss = (count: number) => css`
   border-left: 0.25em solid white;
-  height: ${2.95 + count * 2.2}em;
+  height: ${3.1 + count * 1.99}em;
   position: absolute;
   top: 100%;
   transform: translate3d(2.48em, 0, 0);
@@ -98,7 +98,7 @@ const bottomVerticalLineCss = (count: number) => css`
 
 const topVerticalLineCss = (count: number) => css`
   border-left: 0.25em solid white;
-  height: ${2.95 + count * 2.2}em;
+  height: ${3.1 + count * 1.99}em;
   position: absolute;
   bottom: 100%;
   transform: translate3d(2.48em, 0, 0);
@@ -106,14 +106,20 @@ const topVerticalLineCss = (count: number) => css`
 
 const bottomLine = (index: number) => css`
   border-bottom: 0.25em solid white;
-  transform: translateX(-0.95em) translateY(${7.9 + (index * 1.8)}em);
+  background-color: black;
+  transform: translateX(-0.95em) translateY(${2.95 + index * 1.98}em);
+  position: absolute;
+  top: 100%;
   width: 3.65em;
 `
 
 const topLine = (index: number) => css`
   border-top: 0.25em solid white;
-  transform: translateX(-0.95em) translateY(-${3 + (index * 2.5)}em);
+  background-color: black;
+  transform: translateX(-0.95em) translateY(-${2.95 + index * 1.98}em);
   width: 3.65em;
+  position: absolute;
+  bottom: 100%;
 `
 
 const appearingKeyFrame = keyframes`

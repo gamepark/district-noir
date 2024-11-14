@@ -1,25 +1,38 @@
 /** @jsxImportSource @emotion/react */
 
-import { DistrictNoirRules } from "@gamepark/district-noir/DistrictNoirRules"
-import { CustomMoveType } from "@gamepark/district-noir/rules/CustomMoveType"
-import { PlayMoveButton, useLegalMove, usePlayerId, useRules } from "@gamepark/react-game"
-import { isCustomMoveType } from "@gamepark/rules-api"
+import { CustomMoveType } from '@gamepark/district-noir/rules/CustomMoveType'
+import { PlayerActionRule } from '@gamepark/district-noir/rules/PlayerActionRule'
+import { PlayMoveButton, useGame, useLegalMove, usePlayerId, usePlayerName } from '@gamepark/react-game'
+import { isCustomMoveType, MaterialGame } from '@gamepark/rules-api'
+import { Trans } from 'react-i18next'
 
 export const PlayerTurnHeader = () => {
-  const rules = useRules<DistrictNoirRules>()!
+  const game = useGame<MaterialGame>()!
+  const rule = new PlayerActionRule(game)
   const take = useLegalMove((move) => isCustomMoveType(CustomMoveType.Take)(move))
   const playerId = usePlayerId()
-  const activePlayer = rules.getActivePlayer()
+  const activePlayer = rule.getActivePlayer()
   const itsMe = activePlayer === playerId
-  if (itsMe) {
+  const name = usePlayerName(activePlayer)
+  if (rule.canTake) {
+    if (rule.hand.length) {
+      return (
+        <Trans defaults={itsMe ? 'header.choice' : 'header.choice.other'} values={{ number: rule.lastFiveCards.length, player: name }}>
+          <PlayMoveButton move={take}/>
+        </Trans>
+      )
+    } else {
+      return (
+        <Trans defaults={itsMe ? 'header.take' : 'header.take.other'} values={{ number: rule.lastFiveCards.length, player: name }}>
+          <PlayMoveButton move={take}/>
+        </Trans>
+      )
+    }
+  } else {
     return (
-      <>
-        <PlayMoveButton move={take}>
-          Prendre
-        </PlayMoveButton>
-      </>
+      <Trans defaults={itsMe ? 'header.play' : 'header.play.other'} values={{ player: name }}>
+        <PlayMoveButton move={take}/>
+      </Trans>
     )
   }
-
-  return <>Hello world!</>
 }

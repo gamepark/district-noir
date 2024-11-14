@@ -39,7 +39,10 @@ export class DistrictNoirRules extends SecretMaterialRules<PlayerColor, Material
   }
 
   getScore(playerId: PlayerColor): number {
-    return new ScoringHelper(this.game, playerId).score
+    const helper = new ScoringHelper(this.game, playerId)
+    if (helper.cities.length === 3) return 1
+    if (helper.opponentCities.length === 3) return 0
+    return helper.score
   }
 
 

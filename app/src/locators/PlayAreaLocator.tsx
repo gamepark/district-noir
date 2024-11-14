@@ -6,6 +6,7 @@ import { gameCardDescription } from '../material/GameCardDescription'
 import { gameDeckLocator } from './DeckLocator'
 
 const gapOverlap = 0.5
+const fullVisibleCards = 5
 export class PlayAreaLocator extends ListLocator {
 
   locationDescription = new DropAreaDescription(gameCardDescription)
@@ -15,7 +16,7 @@ export class PlayAreaLocator extends ListLocator {
     const isEnded = rules.game.rule === undefined
     if (isEnded) return { x: 0 }
     const areaLength = rules.material(MaterialType.Card).location(LocationType.PlayArea).length
-    if (areaLength > 5 && location.x! < areaLength - 5) return { x: gameCardDescription.width * gapOverlap}
+    if (areaLength > fullVisibleCards && location.x! < areaLength - fullVisibleCards) return { x: gameCardDescription.width * gapOverlap}
     return {
       x: gameCardDescription.width + 1
     }
@@ -28,7 +29,7 @@ export class PlayAreaLocator extends ListLocator {
     const areaLength = rules.material(MaterialType.Card).location(LocationType.PlayArea).length
     const locationX = isItemContext(context)? location.x!: (areaLength + 1)
     let x = isEnded ? (deckCoordinates.x + locationX * 0.1) : (deckCoordinates.x + gameCardDescription.width + 1)
-    if (!isEnded && areaLength > 5 && locationX >= areaLength - 5) x -= ((gameCardDescription.width * (1 - gapOverlap) + 1) * (areaLength - 6))
+    if (!isEnded && areaLength > fullVisibleCards && locationX >= areaLength - fullVisibleCards) x -= ((gameCardDescription.width * (1 - gapOverlap) + 1) * (areaLength - (fullVisibleCards + 1)))
     return {
       x: x,
       y: deckCoordinates.y,
@@ -43,6 +44,8 @@ export class PlayAreaLocator extends ListLocator {
   getItemIndex(item: MaterialItem) {
     return item.location.x!
   }
+
+  dropPreview = true
 }
 
 export const playAreaLocator = new PlayAreaLocator()
