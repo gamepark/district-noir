@@ -89,7 +89,7 @@ export class ScoringHelper extends MaterialRulesPart {
     }
 
     get score() {
-        if (this.cities.length === 3) return 99
+        if (this.cities.length === 3) return 3
         if (this.opponentCities.length === 3) return 0
         return sum(
             [5, 6, 7, 8, 9, 10, 20].map((id) => this.getColumnScore(id))

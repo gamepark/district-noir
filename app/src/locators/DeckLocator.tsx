@@ -1,7 +1,11 @@
-import { DeckLocator } from '@gamepark/react-game'
+import { DeckLocator, MaterialContext } from '@gamepark/react-game'
+import { Coordinates, Location } from '@gamepark/rules-api'
 
 export class GameDeckLocator extends DeckLocator {
-  delta = { x: -0.05, y: -0.05, z: 0.05 }
+  getGap(_location: Location, context: MaterialContext): Partial<Coordinates> {
+    if (context.rules.game.rule === undefined) return { x: -0.05, y: 0, z: 0.05 }
+    return { x: -0.05, y: -0.05, z: 0.05 }
+  }
 
   coordinates = { x: -40, y: 0, z: 0 }
 }

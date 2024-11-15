@@ -1,11 +1,14 @@
 import { Card, isAlliance, isBetrayal, isCity, isSupport } from '@gamepark/district-noir/material/Card'
-import { MaterialHelpProps } from '@gamepark/react-game'
+import { LocationType } from '@gamepark/district-noir/material/LocationType'
+import { MaterialType } from '@gamepark/district-noir/material/MaterialType'
+import { MaterialHelpProps, useRules } from '@gamepark/react-game'
+import { MaterialRules } from '@gamepark/rules-api'
 import { FC } from 'react'
 import { Trans } from 'react-i18next'
 
 export const GameCardHelp: FC<MaterialHelpProps> = (props) => {
   const { item } = props
-
+  const rules = useRules<MaterialRules>()!
   return (
     <>
       <h2><Trans defaults={getCardName(item.id)}/></h2>
@@ -32,9 +35,6 @@ export const GameCardHelp: FC<MaterialHelpProps> = (props) => {
           <p>
             <Trans defaults="city.three"/>
           </p>
-          <p>
-            <Trans defaults="city.cityhall"/>
-          </p>
           {Card.PoliceDepartment === item.id && (
             <p>
               <Trans defaults="city.policedepartment"/>
@@ -55,11 +55,17 @@ export const GameCardHelp: FC<MaterialHelpProps> = (props) => {
           </p>
         </>
       )}
+      {item.location?.type === LocationType.Deck && (
+        <p>
+          <Trans defaults="deck.size" values={{ number: rules.material(MaterialType.Card).location(LocationType.Deck).length }}/>
+        </p>
+      )}
     </>
   )
 }
 
 const getCardName = (card: Card) => {
+  if (card === undefined) return 'card'
   if (isCity(card)) return 'city'
   if (isBetrayal(card)) return 'betrayal'
   if (isAlliance(card)) return 'alliance'

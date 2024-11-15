@@ -1,5 +1,7 @@
 import { Card } from '@gamepark/district-noir/material/Card'
-import { CardDescription } from '@gamepark/react-game'
+import { LocationType } from '@gamepark/district-noir/material/LocationType'
+import { CardDescription, MaterialContext } from '@gamepark/react-game'
+import { MaterialItem } from '@gamepark/rules-api'
 
 import Alliance2 from '../images/Alliance2.jpg'
 import Alliance3 from '../images/Alliance3.jpg'
@@ -47,7 +49,12 @@ export class GameCardDescription extends CardDescription {
     [Card.TheDocks]: TheDocks
 
   }
-  
+
+  isFlippedOnTable(item: Partial<MaterialItem>, context: MaterialContext): boolean {
+    if (item.location?.type === LocationType.Deck) return true;
+    return super.isFlippedOnTable(item, context)
+  }
+
   help = GameCardHelp
 
 }
