@@ -26,4 +26,4 @@ gameAnimations
 gameAnimations
   .when()
   .move((move) => isMoveItemType(MaterialType.Card)(move) && move.location.type === LocationType.Hand)
-  .duration(0.2)
+  .duration(0.3)

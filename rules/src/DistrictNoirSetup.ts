@@ -1,12 +1,12 @@
 import { MaterialGameSetup, MaterialItem } from '@gamepark/rules-api'
+import times from 'lodash/times'
 import { DistrictNoirOptions } from './DistrictNoirOptions'
 import { DistrictNoirRules } from './DistrictNoirRules'
+import { Card } from './material/Card'
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
 import { PlayerColor } from './PlayerColor'
 import { RuleId } from './rules/RuleId'
-import { Card } from './material/Card'
-import times from 'lodash/times'
 
 /**
  * This class creates a new Game based on the game options
@@ -21,10 +21,10 @@ export class DistrictNoirSetup extends MaterialGameSetup<PlayerColor, MaterialTy
     this.material(MaterialType.CampToken).createItem({
       location: {
         type: LocationType.CampToken,
-        rotation: false
+        player: this.players[0]
       }
     })
-    }
+  }
 
   setupCards() {
     this.createItems(5, Card.Support5)
@@ -37,7 +37,7 @@ export class DistrictNoirSetup extends MaterialGameSetup<PlayerColor, MaterialTy
     this.createItems(1, Card.Alliance4)
 
     this.createItems(3, Card.Betrayal1)
-    this.createItems(4, Card.Betrayal2)    
+    this.createItems(4, Card.Betrayal2)
     this.createItems(2, Card.Betrayal3)
 
     this.createItems(1, Card.CityHall)
@@ -67,17 +67,17 @@ export class DistrictNoirSetup extends MaterialGameSetup<PlayerColor, MaterialTy
       }, 5)
     }
   }
-  
+
   createItems(count: number, id: Card) {
-    const cards: MaterialItem[] = times(count, () => ({ 
-         id: id,
-         location: {
-           type: LocationType.Deck
-         }
-       })
-     )
-   
-     this.material(MaterialType.Card).createItems(cards)
+    const cards: MaterialItem[] = times(count, () => ({
+        id: id,
+        location: {
+          type: LocationType.Deck
+        }
+      })
+    )
+
+    this.material(MaterialType.Card).createItems(cards)
   }
 
   start() {

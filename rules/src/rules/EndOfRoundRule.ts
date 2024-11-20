@@ -38,12 +38,12 @@ export class EndOfRoundRule extends MaterialRulesPart {
     changeFirstPlayer() {
         const moves: MaterialMove[] = []
         const token = this.campToken
-        const nextFirstPlayer =  !token.getItem()!.location.rotation? this.game.players[1]: this.game.players[0]
+        const nextFirstPlayer =  token.getItem()!.location.player === this.game.players[0]? this.game.players[1]: this.game.players[0]
         moves.push(
-            token.moveItem((item) => ({
+            token.moveItem({
                 type: LocationType.CampToken,
-                rotation: !item.location.rotation
-            }))
+                player: nextFirstPlayer
+            })
         )
         moves.push(this.startPlayerTurn(RuleId.PlayerTurn, nextFirstPlayer))
         return moves
