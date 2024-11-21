@@ -45,6 +45,10 @@ export class DistrictNoirSetup extends MaterialGameSetup<PlayerColor, MaterialTy
     this.createItems(1, Card.TheDocks)
 
     this.material(MaterialType.Card).shuffle()
+    this.deleteCards()
+  }
+
+  deleteCards() {
     this.material(MaterialType.Card).limit(3).deleteItems()
   }
 
@@ -59,13 +63,16 @@ export class DistrictNoirSetup extends MaterialGameSetup<PlayerColor, MaterialTy
   }
 
   setupPlayers() {
-    const deck = this.material(MaterialType.Card).location(LocationType.Deck).deck()
     for (const player of this.players) {
-      deck.deal({
-        type: LocationType.Hand,
-        player: player
-      }, 5)
+      this.setupPlayer(player)
     }
+  }
+
+  setupPlayer(player: PlayerColor) {
+    this.material(MaterialType.Card).location(LocationType.Deck).deck().deal({
+      type: LocationType.Hand,
+      player: player
+    }, 5)
   }
 
   createItems(count: number, id: Card) {

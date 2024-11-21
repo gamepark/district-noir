@@ -35,7 +35,7 @@ export class PlayAreaLocator extends ListLocator {
     return {
       x: x,
       y: deckCoordinates.y,
-      z: 1
+      z: 0.05
     }
   }
 
@@ -52,7 +52,7 @@ export class PlayAreaLocator extends ListLocator {
   }
 
   getAreaCoordinates(_location: Location, _context: MaterialContext): Partial<Coordinates> {
-    return { x: 4, y: 0 }
+    return { x: 4, y: 0, z: 1 }
   }
 
   getItemIndex(item: MaterialItem, context: ItemContext) {
