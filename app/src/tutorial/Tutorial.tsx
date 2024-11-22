@@ -71,7 +71,9 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         text: () => (
           <Trans defaults="tuto.opponent" components={BaseComponents}/>
         )
-      },
+      }
+    },
+    {
       move: {
         player: opponent,
         filter: (move, game) => isMoveItemType(MaterialType.Card)(move) && game.items[move.itemType]![move.itemIndex].id === Card.TheDocks
@@ -162,8 +164,8 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         ],
         margin: {
           top: 12,
-          left: 7,
-          right: 7,
+          left: 12,
+          right: 5,
           bottom: 2
         }
       }),
