@@ -4,14 +4,20 @@ import { MaterialType } from '@gamepark/district-noir/material/MaterialType'
 import { MaterialHelpProps, useRules } from '@gamepark/react-game'
 import { MaterialRules } from '@gamepark/rules-api'
 import { FC } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 export const GameCardHelp: FC<MaterialHelpProps> = (props) => {
   const { item } = props
+  const { t } = useTranslation()
   const rules = useRules<MaterialRules>()!
   return (
     <>
-      <h2><Trans defaults={getCardName(item.id)}/></h2>
+      <h2>
+        <Trans
+          defaults={getCardName(item.id)}
+          values={isCity(item.id) ? { city: t(`city.${item.id}`) } : undefined}
+        />
+      </h2>
       {isAlliance(item.id) && (
         <p>
           <Trans defaults="alliance.purpose" values={{ points: item.id % 10 }}/>
@@ -28,32 +34,9 @@ export const GameCardHelp: FC<MaterialHelpProps> = (props) => {
         </p>
       )}
       {isCity(item.id) && (
-        <>
-          <p>
-            <Trans defaults="city.purpose"/>
-          </p>
-          <p>
-            <Trans defaults="city.three"/>
-          </p>
-          {Card.PoliceDepartment === item.id && (
-            <p>
-              <Trans defaults="city.policedepartment"/>
-            </p>
-          )}
-          {Card.CityHall === item.id && (
-            <p>
-              <Trans defaults="city.cityhall"/>
-            </p>
-          )}
-          {Card.TheDocks === item.id && (
-            <p>
-              <Trans defaults="city.dock"/>
-            </p>
-          )}
-          <p>
-            <Trans defaults="city.wincondition"/>
-          </p>
-        </>
+        <p>
+          <Trans defaults="city.purpose"/>
+        </p>
       )}
       {item.location?.type === LocationType.Deck && (
         <p>

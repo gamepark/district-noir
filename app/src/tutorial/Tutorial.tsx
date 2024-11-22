@@ -241,6 +241,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         text: () => (
           <Trans defaults="tuto.cities" components={BaseComponents}/>
         ),
+        size: { width: 100 },
         position: {
           y: -20
         }
