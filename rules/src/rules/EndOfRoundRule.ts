@@ -54,6 +54,7 @@ export class EndOfRoundRule extends MaterialRulesPart {
     }
 
     onRuleEnd() {
+        this.game.players.forEach((player) => this.forget(Memory.HasTaken, player))
         this.forget(Memory.HasTaken)
         return []
     }

@@ -71,13 +71,13 @@ export class PlayerActionRule extends PlayerTurnRule {
   }
 
   get isEndOfRound() {
-    const hasAllTaken = this.game.players.every((player) => this.remind(Memory.HasTaken, player))
-    if (!this.deck.length && hasAllTaken) {
+    const allPlayersHaveTaken = this.game.players.every((player) => this.remind(Memory.HasTaken, player))
+    if (!this.deck.length && allPlayersHaveTaken) {
       return true
     }
+
     return (
-      this.hands.length === 0
-      && hasAllTaken
+      this.hands.length === 0 && allPlayersHaveTaken
     )
 
   }
@@ -101,10 +101,6 @@ export class PlayerActionRule extends PlayerTurnRule {
       .location(LocationType.PlayArea)
       .sort((item) => -item.location.x!)
       .limit(5)
-  }
-
-  get isVictoryTriggered() {
-    return this.cities.length === 3
   }
 
   get cities() {
