@@ -8,7 +8,7 @@ import { Memory } from './Memory'
 
 export class PlayerActionRule extends PlayerTurnRule {
   getPlayerMoves() {
-    const moves: MaterialMove[] = []
+    const moves: MaterialMove[] = []
     if (this.canTake) {
       moves.push(this.customMove(CustomMoveType.Take))
     }      
