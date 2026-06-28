@@ -4,7 +4,7 @@
   "header.take": "You must <0>take {number, plural, one{the card} other{the last # cards}}</0>",
   "header.choice.other": "{player} must play a card or take {number, plural, one{the card} other{the last # cards}}",
   "header.play.other": "{player} must play a card",
-  "header.take.other": "{player} must take {number, plural, one{the  card} other{the last # cards}}",
+  "header.take.other": "{player} must take {number, plural, one{the card} other{the last # cards}}",
   "win.cities": "You win the game with the 3 City cards",
   "win.cities.other": "{player} wins the game with the 3 City cards",
   "supporter": "Support card",
@@ -29,13 +29,13 @@
   "tuto.play.1": "Let's start by playing this card from your hand, in the line.",
   "tuto.opponent": "It's your opponent's turn.",
   "tuto.opponent.played.1": "Your opponent has placed this card in the line.",
-  "tuto.take": "It's your turn.\r\nYou could take this line, even if there are only 4 cards. However, you're only allowed to do this once per round.",
+  "tuto.take": "It's your turn.\nYou could take this line, even if there are only 4 cards. However, you're only allowed to do this once per round.",
   "tuto.play.2": "Play this card in the line instead.",
-  "tuto.opponent.played.2": "Your opponent has played.\r\nNow choose to take the last 5 cards in the row, by clicking on the button in the header.",
-  "tuto.supporter": "These cards are Supporters.\nAt the end of the game, For each of the different groups of <bold>Supporters</bold>, the player who has <bold>the majority</bold> of those cards scores victory points equal to the number shown on that <bold>Support</bold> type (5, 6, 7 or 8 points).",
+  "tuto.opponent.played.2": "Your opponent has played.\nNow choose to take the last 5 cards in the row, by clicking on the button in the header.",
+  "tuto.supporter": "These cards are Supporters.\nAt the end of the game, for each of the different groups of <bold>Supporters</bold>, the player who has <bold>the majority</bold> of those cards scores victory points equal to the number shown on that <bold>Support</bold> type (5, 6, 7 or 8 points).",
   "tuto.alliance": "These cards are Alliances. They are worth the number of points indicated.",
   "tuto.betrayal": "These cards are betrayals. They cause you to lose the number of points indicated.",
   "tuto.cities": "Finally, there are 3 city cards in the game (the police station, the docks and the city hall).\nIf you get these 3 cards, you immediately win the game!\nOtherwise, they don't score any points at the end of the game.",
-  "tuto.round": "Each round, you must play your 5 cards, and take the last 5 cards in the row once.\r\nPlayers then draw 5 cards again, and the first player changes.",
-  "tuto.end": "When there are no more cards in the deck, the game is over, and the player with the most points wins.\r\nGood luck!"
+  "tuto.round": "Each round, you must play your 5 cards, and take the last 5 cards in the row once.\nPlayers then draw 5 cards again, and the first player changes.",
+  "tuto.end": "When there are no more cards in the deck, the game is over, and the player with the most points wins.\nGood luck!"
 }
