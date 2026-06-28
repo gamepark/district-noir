@@ -1,8 +1,5 @@
 import { MaterialGame, MaterialRulesPart } from '@gamepark/rules-api'
-import keys from 'lodash/keys'
-import minBy from 'lodash/minBy'
-import sum from 'lodash/sum'
-import sumBy from 'lodash/sumBy'
+import { sum, sumBy } from 'es-toolkit'
 import { Card, isCity, isSupport, supports } from '../../material/Card'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
@@ -36,14 +33,9 @@ export class ScoringHelper extends MaterialRulesPart {
 
     get linesScore() {
         const cards = this.supportCards
-        const cardsByKey: Partial<Record<Card, number>> = {}
-        for (const type of supports) {
-            cardsByKey[type] = cards.filter((item) => item.id === type).length
-        }
-
-        const minKey = minBy(keys(cardsByKey), (key) => cardsByKey[+key])
-        if (!minKey) return 0
-        return cardsByKey[minKey] * 5
+        const counts = supports.map((type) => cards.filter((item) => item.id === type).length)
+        if (!counts.length) return 0
+        return Math.min(...counts) * 5
     }
 
     getOpponentColumnCards(id: number) {

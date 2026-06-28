@@ -1,20 +1,17 @@
-/** @jsxImportSource @emotion/react */
 import { DistrictNoirOptionsSpec } from '@gamepark/district-noir/DistrictNoirOptions'
 import { DistrictNoirRules } from '@gamepark/district-noir/DistrictNoirRules'
 import { DistrictNoirSetup } from '@gamepark/district-noir/DistrictNoirSetup'
-import { GameProvider, setupTranslation } from '@gamepark/react-game'
+import { GameProvider } from '@gamepark/react-game'
 import { StrictMode } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { gameAnimations } from './animations/GameAnimations'
-import App from './App'
+import { App } from './App'
 import { Locators } from './locators/Locators'
 import { Material } from './material/Material'
-import translations from './translations.json'
+import { scoring } from './Scoring'
 import { Tutorial } from './tutorial/Tutorial'
 
-setupTranslation(translations, { debug: false })
-
-ReactDOM.render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <GameProvider
       game="district-noir"
@@ -24,10 +21,10 @@ ReactDOM.render(
       material={Material}
       locators={Locators}
       animations={gameAnimations}
+      scoring={scoring}
       tutorial={new Tutorial()}
     >
-      <App/>
+      <App />
     </GameProvider>
-  </StrictMode>,
-  document.getElementById('root')
+  </StrictMode>
 )

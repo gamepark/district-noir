@@ -16,9 +16,9 @@ export const GameOverHeader: FC = () => {
 
   if (winnerScoring.cities.length === 3) {
     if (iWin) {
-      return <Trans defaults="win.cities" />
+      return <Trans i18nKey="win.cities" />
     } else {
-      return <Trans defaults="win.cities.other"  values={{ player: playerName }} />
+      return <Trans i18nKey="win.cities.other"  values={{ player: playerName }} />
     }
   } else {
     return <>{resultText}</>

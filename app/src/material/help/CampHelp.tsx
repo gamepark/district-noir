@@ -8,7 +8,7 @@ export const CampHelp: FC<MaterialHelpProps> = () => {
     <>
       <h2>{ t('camp') }</h2>
       <p>
-        <Trans defaults="camp.token" />
+        <Trans i18nKey="camp.token" />
       </p>
     </>
   )

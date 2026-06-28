@@ -9,6 +9,10 @@ export class FirstPlayerTokenLocator extends Locator {
 
     return { x: -40, y: 20 }
   }
+
+  getPositionDependencies(_location: Location, context: MaterialContext) {
+    return { player: context.player ?? context.rules.players[0] }
+  }
 }
 
 export const firstPlayerTokenLocator = new FirstPlayerTokenLocator()

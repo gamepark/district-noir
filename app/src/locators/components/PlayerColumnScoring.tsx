@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 
 import { css, keyframes } from '@emotion/react'
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck'

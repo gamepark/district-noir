@@ -1,13 +1,11 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { DistrictNoirRules } from '@gamepark/district-noir/DistrictNoirRules'
 import { StyledPlayerPanel, usePlayerId, usePlayers, useRules } from '@gamepark/react-game'
-import { FC } from 'react'
 import { createPortal } from 'react-dom'
 import Player1 from '../images/player-1.jpg'
 import Player2 from '../images/player-2.jpg'
 
-export const PlayerPanels: FC<any> = () => {
+export const PlayerPanels = () => {
   const players = usePlayers({ sortFromMe: true })
   const rules = useRules<DistrictNoirRules>()!
   const playerId = usePlayerId()

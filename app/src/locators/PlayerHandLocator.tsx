@@ -1,5 +1,5 @@
 import { LocationType } from '@gamepark/district-noir/material/LocationType'
-import { HandLocator, ItemContext } from '@gamepark/react-game'
+import { HandLocator, ItemContext, MaterialContext } from '@gamepark/react-game'
 import { Coordinates, Location, MaterialItem } from '@gamepark/rules-api'
 import { gameDeckLocator } from './DeckLocator'
 
@@ -53,7 +53,14 @@ export class PlayerHandLocator extends HandLocator {
         if (isBottomPlayer) return 0
         return 180
     }
-    
+
+    getPositionDependencies(_location: Location, context: MaterialContext) {
+        return {
+            ended: context.rules.game.rule === undefined,
+            player: context.player ?? context.rules.players[0]
+        }
+    }
+
 }
 
 export const playerHandLocator = new PlayerHandLocator()

@@ -103,6 +103,13 @@ export class PlayerColumnsLocator extends ListLocator {
         return -1
     }
 
+    getPositionDependencies(_location: Location, context: MaterialContext) {
+        return {
+            ended: context.rules.game.rule === undefined,
+            player: context.player ?? context.rules.players[0]
+        }
+    }
+
     locationDescription = new PlayerColumnsDescription({ height: 5, width: 5 })
 
 }

@@ -45,7 +45,7 @@ export class PlayerActionRule extends PlayerTurnRule {
      )
 
      const cities = this.cities.length
-     const takenCities = lastFiveCards.filter((item) => isCity(item.id)).length
+     const takenCities = lastFiveCards.filter((item) => isCity(item.id as Card)).length
      if (cities + takenCities === 3) {
        moves.push(this.endGame())
      } else {

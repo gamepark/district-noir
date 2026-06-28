@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import { CustomMoveType } from '@gamepark/district-noir/rules/CustomMoveType'
 import { PlayerActionRule } from '@gamepark/district-noir/rules/PlayerActionRule'
 import { PlayMoveButton, useGame, useLegalMove, usePlayerId, usePlayerName } from '@gamepark/react-game'
@@ -17,20 +15,20 @@ export const PlayerTurnHeader = () => {
   if (rule.canTake) {
     if (rule.hand.length) {
       return (
-        <Trans defaults={itsMe ? 'header.choice' : 'header.choice.other'} values={{ number: rule.lastFiveCards.length, player: name }}>
+        <Trans i18nKey={itsMe ? 'header.choice' : 'header.choice.other'} values={{ number: rule.lastFiveCards.length, player: name }}>
           <PlayMoveButton move={take}/>
         </Trans>
       )
     } else {
       return (
-        <Trans defaults={itsMe ? 'header.take' : 'header.take.other'} values={{ number: rule.lastFiveCards.length, player: name }}>
+        <Trans i18nKey={itsMe ? 'header.take' : 'header.take.other'} values={{ number: rule.lastFiveCards.length, player: name }}>
           <PlayMoveButton move={take}/>
         </Trans>
       )
     }
   } else {
     return (
-      <Trans defaults={itsMe ? 'header.play' : 'header.play.other'} values={{ player: name }}>
+      <Trans i18nKey={itsMe ? 'header.play' : 'header.play.other'} values={{ player: name }}>
         <PlayMoveButton move={take}/>
       </Trans>
     )

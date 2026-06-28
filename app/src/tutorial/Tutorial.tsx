@@ -23,28 +23,28 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
   steps: TutorialStep[] = [{
     popup: {
       text: () => (
-        <Trans defaults="tuto.welcome" components={BaseComponents}/>
+        <Trans i18nKey="tuto.welcome" components={BaseComponents}/>
       )
     }
   },
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.goal" components={BaseComponents}/>
+          <Trans i18nKey="tuto.goal" components={BaseComponents}/>
         )
       }
     },
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.actions" components={BaseComponents}/>
+          <Trans i18nKey="tuto.actions" components={BaseComponents}/>
         )
       }
     },
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.play.1" components={BaseComponents}/>
+          <Trans i18nKey="tuto.play.1" components={BaseComponents}/>
         ),
         position: {
           y: -25
@@ -69,7 +69,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.opponent" components={BaseComponents}/>
+          <Trans i18nKey="tuto.opponent" components={BaseComponents}/>
         )
       }
     },
@@ -82,7 +82,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.opponent.played.1" components={BaseComponents}/>
+          <Trans i18nKey="tuto.opponent.played.1" components={BaseComponents}/>
         ),
         position: {
           x: 30
@@ -102,7 +102,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.take" components={BaseComponents}/>
+          <Trans i18nKey="tuto.take" components={BaseComponents}/>
         ),
         position: {
           y: -20
@@ -121,7 +121,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.play.2" components={BaseComponents}/>
+          <Trans i18nKey="tuto.play.2" components={BaseComponents}/>
         ),
         position: {
           y: -27
@@ -152,7 +152,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.opponent.played.2" components={BaseComponents}/>
+          <Trans i18nKey="tuto.opponent.played.2" components={BaseComponents}/>
         ),
         position: {
           y: -20
@@ -176,7 +176,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.supporter" components={BaseComponents}/>
+          <Trans i18nKey="tuto.supporter" components={BaseComponents}/>
         ),
         position: {
           y: -20
@@ -197,7 +197,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.alliance" components={BaseComponents}/>
+          <Trans i18nKey="tuto.alliance" components={BaseComponents}/>
         ),
         position: {
           y: -20
@@ -218,7 +218,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.betrayal" components={BaseComponents}/>
+          <Trans i18nKey="tuto.betrayal" components={BaseComponents}/>
         ),
         position: {
           y: -20
@@ -239,7 +239,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.cities" components={BaseComponents}/>
+          <Trans i18nKey="tuto.cities" components={BaseComponents}/>
         ),
         size: { width: 100 },
         position: {
@@ -261,14 +261,14 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.round" components={BaseComponents}/>
+          <Trans i18nKey="tuto.round" components={BaseComponents}/>
         )
       }
     },
     {
       popup: {
         text: () => (
-          <Trans defaults="tuto.end" components={BaseComponents}/>
+          <Trans i18nKey="tuto.end" components={BaseComponents}/>
         )
       }
     }

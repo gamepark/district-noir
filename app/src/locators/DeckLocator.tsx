@@ -7,6 +7,10 @@ export class GameDeckLocator extends DeckLocator {
     return { x: -0.05, y: -0.05, z: 0.05 }
   }
 
+  getPositionDependencies(_location: Location, context: MaterialContext) {
+    return { ended: context.rules.game.rule === undefined }
+  }
+
   coordinates = { x: -40, y: 0, z: 0 }
 }
 

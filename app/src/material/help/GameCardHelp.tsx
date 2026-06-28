@@ -14,33 +14,33 @@ export const GameCardHelp: FC<MaterialHelpProps> = (props) => {
     <>
       <h2>
         <Trans
-          defaults={getCardName(item.id)}
+          i18nKey={getCardName(item.id)}
           values={isCity(item.id) ? { city: t(`city.${item.id}`) } : undefined}
         />
       </h2>
       {isAlliance(item.id) && (
         <p>
-          <Trans defaults="alliance.purpose" values={{ points: item.id % 10 }}/>
+          <Trans i18nKey="alliance.purpose" values={{ points: item.id % 10 }}/>
         </p>
       )}
       {isSupport(item.id) && (
         <p>
-          <Trans defaults="supporter.purpose" values={{ points: item.id }}/>
+          <Trans i18nKey="supporter.purpose" values={{ points: item.id }}/>
         </p>
       )}
       {isBetrayal(item.id) && (
         <p>
-          <Trans defaults="betrayal.purpose" values={{ points: item.id % 10 }}/>
+          <Trans i18nKey="betrayal.purpose" values={{ points: item.id % 10 }}/>
         </p>
       )}
       {isCity(item.id) && (
         <p>
-          <Trans defaults="city.purpose"/>
+          <Trans i18nKey="city.purpose"/>
         </p>
       )}
       {item.location?.type === LocationType.Deck && (
         <p>
-          <Trans defaults="deck.size" values={{ number: rules.material(MaterialType.Card).location(LocationType.Deck).length }}/>
+          <Trans i18nKey="deck.size" values={{ number: rules.material(MaterialType.Card).location(LocationType.Deck).length }}/>
         </p>
       )}
     </>

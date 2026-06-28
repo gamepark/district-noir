@@ -1,5 +1,5 @@
 import { MaterialGameSetup, MaterialItem } from '@gamepark/rules-api'
-import times from 'lodash/times'
+import { times } from 'es-toolkit/compat'
 import { DistrictNoirOptions } from './DistrictNoirOptions'
 import { DistrictNoirRules } from './DistrictNoirRules'
 import { Card } from './material/Card'

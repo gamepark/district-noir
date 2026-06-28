@@ -61,6 +61,14 @@ export class PlayAreaLocator extends ListLocator {
     return item.location.x ?? areaLength
   }
 
+  getPositionDependencies(_location: Location, context: MaterialContext) {
+    const { rules } = context
+    return {
+      ended: rules.game.rule === undefined,
+      areaLength: rules.material(MaterialType.Card).location(LocationType.PlayArea).length
+    }
+  }
+
   dropPreview = true
   locationDescription = new PlayAreaDescription()
 }
