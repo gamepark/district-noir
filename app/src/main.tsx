@@ -1,4 +1,4 @@
-import { DistrictNoirOptionsSpec } from '@gamepark/district-noir/DistrictNoirOptions'
+import { DistrictNoirOptionsSpecV2 } from '@gamepark/district-noir/DistrictNoirOptions'
 import { DistrictNoirRules } from '@gamepark/district-noir/DistrictNoirRules'
 import { DistrictNoirSetup } from '@gamepark/district-noir/DistrictNoirSetup'
 import { GameProvider } from '@gamepark/react-game'
@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')!).render(
     <GameProvider
       game="district-noir"
       Rules={DistrictNoirRules}
-      optionsSpec={DistrictNoirOptionsSpec}
+      optionsSpec={DistrictNoirOptionsSpecV2}
       GameSetup={DistrictNoirSetup}
       material={Material}
       locators={Locators}
